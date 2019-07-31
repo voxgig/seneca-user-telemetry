@@ -1,0 +1,39 @@
+{
+  "name": "@seneca/user-telemetry",
+  "version": "0.0.1",
+  "description": "A Seneca plugin that provides basic user telemetry operations.",
+  "main": "user-telemetry.js",
+  "scripts": {
+    "test": "lab -v -L -P test -t 90",
+    "doc": "seneca-doc",
+    "prettier": "prettier --write *.js lib/*.js bin/*.js test/*.js",
+    "coveralls": "lab -s -P test -r lcov | coveralls",
+    "clean-npm": "rm -rf node_modules package-lock.json",
+    "clean-yarn": "rm -rf node_modules yarn.lock",
+    "repo-tag": "REPO_VERSION=`node -e \"console.log(require('./package').version)\"` && echo TAG: v$REPO_VERSION && git commit -a -m v$REPO_VERSION && git push && git tag v$REPO_VERSION && git push --tags;",
+    "repo-publish": "npm run prettier && npm test && npm run doc && npm run repo-tag && npm publish --access public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/voxgig/seneca-user-telemetry.git"
+  },
+  "keywords": [
+    "seneca",
+    "user",
+    "telemetry"
+  ],
+  "author": "Richard Rodger richardrodger.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/voxgig/seneca-user-telemetry/issues"
+  },
+  "homepage": "https://github.com/voxgig/seneca-user-telemetry#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "seneca": "plugin",
+    "seneca-doc": "^0.2.1",
+    "seneca-entity": "^4.1.0",
+    "seneca-plugin-validator": "^0.1.1",
+    "seneca-promisify": "^0.8.0"
+  }
+}
