@@ -16,8 +16,18 @@ const Plugin = require('..')
 lab.test('validate', PluginValidator(Plugin, module))
 
 lab.test('happy', async () => {
-  var si = await seneca_instance().ready()
-  expect(si).exist()
+  var log = []
+  var si = await seneca_instance(null,{dest:[{
+    name: 'test',
+    log: ()=>log
+  }]}).ready()
+
+  await si
+    .act('role:user,cmd:register,name:Joe\x20Bloggs,email:joe.bloggs@example.com')
+    .act('role:user,cmd:login,email:joe.bloggs@example.com,auto:true')
+    .ready()
+
+  expect(log).equal([ 'init', 'event/register', 'event/login' ])
 })
 
 function seneca_instance(config, plugin_options) {
@@ -25,5 +35,7 @@ function seneca_instance(config, plugin_options) {
     .test()
     .use('promisify')
     .use('entity')
+    .use('basic')
+    .use('user')
     .use(Plugin, plugin_options)
 }

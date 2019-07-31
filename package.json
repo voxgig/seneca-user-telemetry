@@ -4,7 +4,7 @@
   "description": "A Seneca plugin that provides basic user telemetry operations.",
   "main": "user-telemetry.js",
   "scripts": {
-    "test": "lab -v -L -P test -t 90",
+    "test": "lab -v -L -P test -t 50",
     "doc": "seneca-doc",
     "prettier": "prettier --write *.js lib/*.js bin/*.js test/*.js",
     "coveralls": "lab -s -P test -r lcov | coveralls",
@@ -31,9 +31,11 @@
   "dependencies": {},
   "devDependencies": {
     "seneca": "plugin",
+    "seneca-basic": "^0.6.0",
     "seneca-doc": "^0.2.1",
     "seneca-entity": "^4.1.0",
     "seneca-plugin-validator": "^0.1.1",
-    "seneca-promisify": "^0.8.0"
+    "seneca-promisify": "^0.8.0",
+    "seneca-user": "^2.1.4"
   }
 }
