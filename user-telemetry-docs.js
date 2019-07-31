@@ -2,7 +2,8 @@ const Joi = require('@hapi/joi')
 
 module.exports = {
   add_rel: {
-    desc: 'Add a directed relation between two nodes in a given user-telemetry.',
+    desc:
+      'Add a directed relation between two nodes in a given user-telemetry.',
     examples: {
       'user-telemetry:number,rel:lessthan,add:rel,from:<from-id>,to:<to-id>':
         'Idempotently add a pair of nodes to  _number_ user-telemetry connected by directed relation _lessthan_ with `from-id` and `to-id` referencing external entity identifiers as per user-telemetry definition in options.'

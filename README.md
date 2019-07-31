@@ -17,9 +17,21 @@ $ npm install @seneca/user-telemetry
 
 
 <!--START:action-list-->
+
+
+## Action Patterns
+
+
+
 <!--END:action-list-->
 
 <!--START:action-desc-->
+
+
+## Action Descriptions
+
+
+
 <!--END:action-desc-->
 
 
