@@ -14,9 +14,9 @@ module.exports.errors = {}
 function user_telemetry(options) {
   var dests = null
 
-  this.sub('role:user,cmd:register', handle_event).sub(
-    'role:user,cmd:login',
-    handle_event
+  this
+    .sub('out$:true,role:user,cmd:register', handle_event)
+    .sub('out$:true,role:user,cmd:login', handle_event
   )
 
   this.prepare(async function() {
@@ -30,10 +30,10 @@ function user_telemetry(options) {
     }
   })
 
-  function handle_event(msg, meta) {
+  function handle_event(msg, res, meta) {
     for (var i = 0; i < dests.length; i++) {
       // NOTE: called synchronously!
-      dests[i].event.call(this, msg, meta)
+      dests[i].event.call(this, msg, res, meta)
     }
   }
 }

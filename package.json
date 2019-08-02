@@ -28,7 +28,9 @@
     "url": "https://github.com/voxgig/seneca-user-telemetry/issues"
   },
   "homepage": "https://github.com/voxgig/seneca-user-telemetry#readme",
-  "dependencies": {},
+  "dependencies": {
+    "analytics-node": "^3.4.0-beta.1"
+  },
   "devDependencies": {
     "seneca": "plugin",
     "seneca-basic": "^0.6.0",
@@ -36,6 +38,6 @@
     "seneca-entity": "^4.1.0",
     "seneca-plugin-validator": "^0.1.1",
     "seneca-promisify": "^0.8.0",
-    "seneca-user": "^2.1.4"
+    "@seneca/user": "^3.0.1"
   }
 }

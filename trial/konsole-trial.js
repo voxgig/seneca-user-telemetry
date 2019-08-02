@@ -12,10 +12,8 @@ var si = Seneca({ legacy: { transport: false } })
         {name:'konsole'}
       ]
     })
-    .ready(function() {
-      this
-        .act('role:user,cmd:register,name:Joe\x20Bloggs,email:joe.bloggs@example.com')
-        .act('role:user,cmd:login,email:joe.bloggs@example.com,auto:true')
-        .ready()
+    .ready(async function() {
+      await this.post('role:user,cmd:register,name:Joe\x20Bloggs,email:joe.bloggs@example.com')
+      await this.post('role:user,cmd:login,email:joe.bloggs@example.com,auto:true')
     })
 
