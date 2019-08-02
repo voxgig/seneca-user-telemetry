@@ -1,6 +1,6 @@
 {
   "name": "@seneca/user-telemetry",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "A Seneca plugin that provides basic user telemetry operations.",
   "main": "user-telemetry.js",
   "scripts": {
@@ -17,6 +17,13 @@
     "type": "git",
     "url": "git+https://github.com/voxgig/seneca-user-telemetry.git"
   },
+  "files": [
+    "LICENSE",
+    "README.txt",
+    "user-telemetry.js",
+    "user-telemetry-docs.js",
+    "dest"
+  ],
   "keywords": [
     "seneca",
     "user",

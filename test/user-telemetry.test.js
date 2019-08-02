@@ -25,7 +25,9 @@ lab.test('happy', async () => {
     ]
   }).ready()
 
-  await si.post('role:user,cmd:register,name:Joe\x20Bloggs,email:joe.bloggs@example.com')
+  await si.post(
+    'role:user,cmd:register,name:Joe\x20Bloggs,email:joe.bloggs@example.com'
+  )
   await si.post('role:user,cmd:login,email:joe.bloggs@example.com,auto:true')
 
   expect(log).equal(['init', 'event/register', 'event/login'])

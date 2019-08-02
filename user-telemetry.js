@@ -14,9 +14,9 @@ module.exports.errors = {}
 function user_telemetry(options) {
   var dests = null
 
-  this
-    .sub('out$:true,role:user,cmd:register', handle_event)
-    .sub('out$:true,role:user,cmd:login', handle_event
+  this.sub('out$:true,role:user,cmd:register', handle_event).sub(
+    'out$:true,role:user,cmd:login',
+    handle_event
   )
 
   this.prepare(async function() {
