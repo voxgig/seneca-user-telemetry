@@ -28,9 +28,8 @@ function user_telemetry(options) {
 
         try {
           await dests[i].init.call(this, dests[i].options$)
-        }
-        catch(err) {
-          this.log.error({what:'init',dest:dests[i].name,err:err})
+        } catch (err) {
+          this.log.error({ what: 'init', dest: dests[i].name, err: err })
         }
       }
     }
@@ -41,9 +40,15 @@ function user_telemetry(options) {
       // NOTE: called synchronously!
       try {
         dests[i].event.call(this, msg, res, meta)
-      }
-      catch(err) {
-        this.log.error({what:'event',dest:dests[i].name,err:err,msg:msg,res:res,meta:meta})
+      } catch (err) {
+        this.log.error({
+          what: 'event',
+          dest: dests[i].name,
+          err: err,
+          msg: msg,
+          res: res,
+          meta: meta
+        })
       }
     }
   }
