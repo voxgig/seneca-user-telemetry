@@ -25,7 +25,13 @@ function user_telemetry(options) {
     for (var i = 0; i < dests.length; i++) {
       if (dests[i].init) {
         this.log.info({ case: 'init', dest: dests[i].name })
-        await dests[i].init.call(this, dests[i].options$)
+
+        try {
+          await dests[i].init.call(this, dests[i].options$)
+        }
+        catch(err) {
+          this.log.error({what:'init',dest:dests[i].name,err:err})
+        }
       }
     }
   })
@@ -33,7 +39,12 @@ function user_telemetry(options) {
   function handle_event(msg, res, meta) {
     for (var i = 0; i < dests.length; i++) {
       // NOTE: called synchronously!
-      dests[i].event.call(this, msg, res, meta)
+      try {
+        dests[i].event.call(this, msg, res, meta)
+      }
+      catch(err) {
+        this.log.error({what:'event',dest:dests[i].name,err:err,msg:msg,res:res,meta:meta})
+      }
     }
   }
 }
