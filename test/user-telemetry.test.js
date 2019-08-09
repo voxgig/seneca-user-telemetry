@@ -26,11 +26,17 @@ lab.test('happy', async () => {
   }).ready()
 
   await si.post(
-    'role:user,cmd:register,name:Joe\x20Bloggs,email:joe.bloggs@example.com'
+    'sys:user,cmd:register,user:{name:Joe\x20Bloggs,email:joe.bloggs@example.com}'
   )
-  await si.post('role:user,cmd:login,email:joe.bloggs@example.com,auto:true')
+  await si.post(
+    'sys:user,cmd:login,user:{email:joe.bloggs@example.com,auto:true}'
+  )
 
   expect(log).equal(['init', 'event/register', 'event/login'])
+
+  var stats = await si.post('sys:user-telemetry,get:stats')
+  expect(stats).contains({ register: 1, login: 1 })
+  expect(stats._start).below(stats._last)
 })
 
 function seneca_instance(config, plugin_options) {

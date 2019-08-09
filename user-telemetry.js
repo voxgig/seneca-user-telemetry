@@ -1,8 +1,6 @@
 /* Copyright (c) 2019 voxgig and other contributors, MIT License */
 'use strict'
 
-// const Docs = require('./user-telemetry-docs.js')
-
 module.exports = user_telemetry
 module.exports.defaults = {
   dest: []
@@ -14,10 +12,17 @@ module.exports.errors = {}
 function user_telemetry(options) {
   var dests = null
 
-  this.sub('out$:true,role:user,cmd:register', handle_event).sub(
-    'out$:true,role:user,cmd:login',
-    handle_event
-  )
+  var stats = {
+    _start: Date.now(),
+    _instance: this.id,
+    register: 0,
+    login: 0
+  }
+  stats._last = stats._start
+
+  this.message('sys:user-telemetry,get:stats', get_stats)
+    .sub('out$:true,sys:user,cmd:register', handle_event)
+    .sub('out$:true,sys:user,cmd:login', handle_event)
 
   this.prepare(async function() {
     dests = await intern.resolve_dest(this, options)
@@ -35,7 +40,18 @@ function user_telemetry(options) {
     }
   })
 
+  async function get_stats(msg) {
+    return this.util.deep(stats)
+  }
+
   function handle_event(msg, res, meta) {
+    var cmd = msg.cmd
+
+    if (null != stats[cmd]) {
+      stats[cmd]++
+      stats._last = Date.now()
+    }
+
     for (var i = 0; i < dests.length; i++) {
       // NOTE: called synchronously!
       try {

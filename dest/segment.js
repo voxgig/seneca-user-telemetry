@@ -29,6 +29,8 @@ var d = null
 const intern = (segment.intern) = {
   handle: {
     register: function(seneca, options, analytics, msg, res, meta) {
+      // if res.ok!!!
+
       analytics.identify({
         userId: res.user.id,
         timestamp: (d=new Date(),d.setTime(meta.start),d),

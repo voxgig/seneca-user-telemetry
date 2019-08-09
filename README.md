@@ -21,6 +21,7 @@ $ npm install @seneca/user-telemetry
 
 ## Action Patterns
 
+* [get:stats,sys:user-telemetry](#-getstatssysusertelemetry-)
 
 
 <!--END:action-list-->
@@ -30,6 +31,36 @@ $ npm install @seneca/user-telemetry
 
 ## Action Descriptions
 
+### &laquo; `get:stats,sys:user-telemetry` &raquo;
+
+Get event collection statistics.
+
+
+
+
+#### Examples
+
+
+
+* `get:stats,sys:user-telemetry,get:stats`
+  * 
+
+
+
+#### Replies With
+
+
+```
+{
+  _start: 'Start time',
+  _last: 'Last event time',
+  _instance: 'Seneca instance id',
+  user_cmd: 'Count of _user_cmd_ (e.g. register, login, ...) events seen'
+}
+```
+
+
+----------
 
 
 <!--END:action-desc-->
