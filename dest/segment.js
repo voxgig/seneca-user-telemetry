@@ -12,8 +12,6 @@ function segment(options) {
       analytics = new Analytics(options.apikey)
     },
     event: function(msg, res, meta) {
-      console.log('SEGMENT EVENT', msg, res)
-
       var handler = intern.handle[msg.cmd]
       if(meta.error || !handler) {
         handler = intern.handle.error
